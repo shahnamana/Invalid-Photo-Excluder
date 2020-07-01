@@ -1,11 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tflite/tflite.dart';
-import 'dart:math';
-import 'package:gallery_saver/gallery_saver.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:flutter_exif_rotation/flutter_exif_rotation.dart';
 
 void main() => runApp(MaterialApp(
       home: MyApp(),
@@ -137,11 +134,7 @@ class _MyAppState extends State<MyApp> {
     String x = t['label'];
     print(x);
     if (x == "0 Dog") {
-      Random random = new Random();
-      int randomNumber = random.nextInt(10000);
-      final String fn = randomNumber.toString();
-      final result = await ImageGallerySaver.saveImage(image.readAsBytesSync(),
-          name: '$fn.png');
+      image = await FlutterExifRotation.rotateAndSaveImage(path: image.path);
     }
   }
 
