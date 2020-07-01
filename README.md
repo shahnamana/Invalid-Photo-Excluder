@@ -1,4 +1,4 @@
-# internship_project
+# cat_dog_ml
 
 A new Flutter project.
 
