@@ -1,5 +1,7 @@
 import 'dart:io';
+import 'dart:wasm';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tflite/tflite.dart';
 import 'package:flutter_exif_rotation/flutter_exif_rotation.dart';
@@ -16,7 +18,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List _outputs;
+  var _outputs;
   File _image;
   bool _loading = false;
 
@@ -55,7 +57,7 @@ class _MyAppState extends State<MyApp> {
                   ),
                   _outputs != null
                       ? Text(
-                          "${_outputs[0]["label"]}",
+                          "$_outputs",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 20.0,
@@ -118,8 +120,12 @@ class _MyAppState extends State<MyApp> {
   }
 
   classifyImage(File image) async {
+    ImageProperties properties =
+        await FlutterNativeImage.getImageProperties(image.path);
+    File compressedFile = await FlutterNativeImage.compressImage(image.path,
+        quality: 80, targetWidth: 224, targetHeight: 224);
     var output = await Tflite.runModelOnImage(
-      path: image.path,
+      path: compressedFile.path,
       numResults: 2,
       threshold: 0.5,
       imageMean: 127.5,
@@ -130,17 +136,19 @@ class _MyAppState extends State<MyApp> {
       _outputs = output;
       _image = image;
     });
-    var t = output[0];
-    String x = t['label'];
-    print(x);
-    if (x == "0 Dog") {
-      image = await FlutterExifRotation.rotateAndSaveImage(path: image.path);
+
+    String t = _outputs;
+    // String x = t['label'];
+    print(t);
+    if (t == 0 & t ==2) {
+      image = await FlutterExifRotation.rotateAndSaveImage(
+          path: compressedFile.path);
     }
   }
 
   loadModel() async {
     await Tflite.loadModel(
-      model: "assets/model_unquant.tflite",
+      model: "assets/converted_model.tflite",
       labels: "assets/labels.txt",
     );
   }
