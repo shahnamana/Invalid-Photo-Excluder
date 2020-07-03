@@ -137,12 +137,12 @@ class _MyAppState extends State<MyApp> {
       _image = image;
     });
 
-    String t = _outputs;
-    // String x = t['label'];
-    print(t);
-    if (t == 0 & t ==2) {
-      image = await FlutterExifRotation.rotateAndSaveImage(
-          path: compressedFile.path);
+    print(output);
+    var t = output[0];
+    String x = t['label'];
+    print(x);
+    if (x == "0 Safe" || x == "2 Safe") {
+      image = await FlutterExifRotation.rotateAndSaveImage(path: image.path);
     }
   }
 
