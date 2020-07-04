@@ -1,9 +1,9 @@
 import 'dart:io';
-import 'dart:wasm';
+import 'package:sendsms/sendsms.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tflite/tflite.dart';
+
 import 'package:flutter_exif_rotation/flutter_exif_rotation.dart';
 
 void main() => runApp(MaterialApp(
@@ -70,6 +70,27 @@ class _MyAppState extends State<MyApp> {
             ),
       floatingActionButton: Stack(
         children: <Widget>[
+          // Padding(
+          //   padding: EdgeInsets.all(10),
+          //   child: Align(
+          //     alignment: Alignment.bottomLeft,
+          //     child: FloatingActionButton(
+          //       child: Icon(Icons.sms),
+          //       // tooltip: 'Pick Image from Gallery',
+          //       backgroundColor: Colors.redAccent,
+          //       onPressed: () async {
+          //         String phoneNumber = "+917282890509";
+          //         String message = "Test SMS from flutter app";
+
+          //         await Sendsms.onGetPermission();
+
+          //         if (await Sendsms.hasPermission()) {
+          //           await Sendsms.onSendSMS(phoneNumber, message);
+          //         }
+          //       },
+          //     ),
+          //   ),
+          // ),
           Padding(
             padding: EdgeInsets.all(10),
             child: Align(
@@ -120,13 +141,9 @@ class _MyAppState extends State<MyApp> {
   }
 
   classifyImage(File image) async {
-    ImageProperties properties =
-        await FlutterNativeImage.getImageProperties(image.path);
-    File compressedFile = await FlutterNativeImage.compressImage(image.path,
-        quality: 80, targetWidth: 224, targetHeight: 224);
     var output = await Tflite.runModelOnImage(
-      path: compressedFile.path,
-      numResults: 2,
+      path: image.path,
+      numResults: 5,
       threshold: 0.5,
       imageMean: 127.5,
       imageStd: 127.5,
@@ -134,15 +151,17 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       _loading = false;
       _outputs = output;
-      _image = image;
     });
-
     print(output);
     var t = output[0];
     String x = t['label'];
     print(x);
     if (x == "0 Safe" || x == "2 Safe") {
       image = await FlutterExifRotation.rotateAndSaveImage(path: image.path);
+    } else {
+      String phoneNumber = ""; /* YOUR NUMBER HERE*/
+      String message = "After clicking an in appropriate image";
+      await Sendsms.onSendSMS(phoneNumber, message);
     }
   }
 
