@@ -1,4 +1,4 @@
-# A flutter app to not save an image which seems to be inappropriate when clicked through an app
+# cat_dog_ml
 
 A new Flutter project.
 
