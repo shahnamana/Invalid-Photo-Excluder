@@ -31,6 +31,8 @@ dependencies:
   flutter_sms: ^2.0.1+2
   sendsms: ^1.0.3
   shared_preferences: ^0.5.7+3
+  easy_permission_validator: ^2.0.0
+  permission_handler: ^5.0.1+1
 
 
   path_provider: ^1.6.11
@@ -60,7 +62,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-   - assets/
+    - assets/
+    - assets/images/footer.jpg
+    - assets/images/logo.jpg
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

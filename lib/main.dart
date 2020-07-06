@@ -5,6 +5,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tflite/tflite.dart';
 import 'package:flutter_exif_rotation/flutter_exif_rotation.dart';
+import 'package:easy_permission_validator/easy_permission_validator.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void main() => runApp(MaterialApp(
       home: MyLoginPage(),
@@ -42,9 +44,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Invalid Photo Excluder'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('Invalid Photo Excluder'),
+      // ),
       body: _loading
           ? Container(
               alignment: Alignment.center,
@@ -75,35 +77,35 @@ class _MyAppState extends State<MyApp> {
             ),
       floatingActionButton: Stack(
         children: <Widget>[
-          new Padding(
-            padding: EdgeInsets.all(10),
-            child: Align(
-              alignment: Alignment.bottomLeft,
-              child: FloatingActionButton(
-                heroTag: "btn2",
-                child: Icon(Icons.pages),
-                tooltip: 'Login Page',
-                backgroundColor: Colors.purpleAccent,
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MyLoginPage()));
-                },
-              ),
-            ),
-          ),
-          new Padding(
-            padding: EdgeInsets.all(10),
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: FloatingActionButton(
-                heroTag: "btn1",
-                child: Icon(Icons.image),
-                tooltip: 'Pick Image from Gallery',
-                backgroundColor: Colors.purpleAccent,
-                onPressed: pickImage,
-              ),
-            ),
-          ),
+          // new Padding(
+          //   padding: EdgeInsets.all(10),
+          //   child: Align(
+          //     alignment: Alignment.bottomLeft,
+          //     child: FloatingActionButton(
+          //       heroTag: "btn2",
+          //       child: Icon(Icons.pages),
+          //       tooltip: 'Login Page',
+          //       backgroundColor: Colors.black,
+          //       onPressed: () {
+          //         Navigator.push(context,
+          //             MaterialPageRoute(builder: (context) => MyLoginPage()));
+          //       },
+          //     ),
+          //   ),
+          // ),
+          // new Padding(
+          //   padding: EdgeInsets.all(10),
+          //   child: Align(
+          //     alignment: Alignment.bottomRight,
+          //     child: FloatingActionButton(
+          //       heroTag: "btn1",
+          //       child: Icon(Icons.image),
+          //       tooltip: 'Pick Image from Gallery',
+          //       backgroundColor: Colors.purpleAccent,
+          //       onPressed: pickImage,
+          //     ),
+          //   ),
+          // ),
           new Padding(
             padding: EdgeInsets.all(10),
             child: Align(
@@ -154,6 +156,7 @@ class _MyAppState extends State<MyApp> {
       _loading = false;
       _outputs = output;
     });
+
     print(output);
     var t = output[0];
     String x = t['label'];
@@ -179,7 +182,7 @@ class _MyAppState extends State<MyApp> {
       String message = "After clicking an in appropriate image";
       String number1_toSend = recipents[0].toString();
       String number2_toSend = recipents[1].toString();
-      await Sendsms.onSendSMS(number1_toSend, message);
+      await Sendsms.onSendSMS(number1_toSend.toString(), message);
       await Sendsms.onSendSMS(number2_toSend.toString(), message);
 
       print("\n\n\n\n\n\n");
@@ -232,6 +235,17 @@ class _MyLoginPageState extends State<MyLoginPage> {
     }
   }
 
+  // _permissionRequest() async {
+  //   final permissionValidator = EasyPermissionValidator(
+  //     context: context,
+  //     appName: 'Easy Permission Validator',
+  //   );
+  //   var result = await permissionValidator.camera();
+  //   if (result) {
+  //     setState(() => _result = 'Permission accepted');
+  //   }
+  // }
+
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -242,22 +256,35 @@ class _MyLoginPageState extends State<MyLoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(" Shared Preferences"),
-      ),
+      // appBar: AppBar(
+      //   title: Text(" Shared Preferences"),
+      // ),
+      resizeToAvoidBottomInset: false,
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text(
-              "Login Form",
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            Container(
+              height: MediaQuery.of(context).copyWith().size.height / 5,
             ),
+
+            Image.asset('assets/images/logo.jpg'),
+            // Text(
+            //   "To show Example of Shared Preferences",
+            //   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            // ),
+            // Container(
+            //   height: width * 0.35,
+            // ),
             Text(
-              "To show Example of Shared Preferences",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              "Please fill this form",
+              style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
             ),
+            // Container(
+            //   height: ScreenUtil().setWidth(375),
+            // ),
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextField(
@@ -278,23 +305,33 @@ class _MyLoginPageState extends State<MyLoginPage> {
                 ),
               ),
             ),
+            // Container(
+            //   height: width * 0.35,
+            // ),
             RaisedButton(
               textColor: Colors.white,
               color: Colors.blue,
-              onPressed: () {
+              onPressed: () async {
                 String username = username_controller.text;
                 String password = password_controller.text;
                 if (username != '' && password != '') {
-                  print('Successfull');
-                  logindata.setBool('login', false);
-                  logindata.setString('username', username);
-                  logindata.setString('password', password);
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MyApp()));
+                  if (await Permission.sms.request().isGranted) {
+                    // Either the permission was already granted before or the user just granted it.
+                    print('Successfull');
+                    logindata.setBool('login', false);
+                    logindata.setString('username', username);
+                    logindata.setString('password', password);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => MyApp()));
+                  }
                 }
               },
               child: Text("Log-In"),
-            )
+            ),
+            // Container(
+            //   height: width * 0.35,
+            // ),
+            Image.asset('assets/images/footer.jpg'),
           ],
         ),
       ),
