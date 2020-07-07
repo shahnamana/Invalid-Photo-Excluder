@@ -1,0 +1,101 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.cat_dog_ml"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="19"
+8-->C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\android\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="28" />
+9-->C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\android\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.SEND_SMS" />
+11-->C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\android\app\src\main\AndroidManifest.xml:31:5-66
+11-->C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\android\app\src\main\AndroidManifest.xml:31:22-64
+12    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+12-->[:save_in_gallery] C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\build\save_in_gallery\intermediates\library_manifest\release\AndroidManifest.xml:7:5-81
+12-->[:save_in_gallery] C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\build\save_in_gallery\intermediates\library_manifest\release\AndroidManifest.xml:7:22-78
+13    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+14    <!--
+15 io.flutter.app.FlutterApplication is an android.app.Application that
+16         calls FlutterMain.startInitialization(this); in its onCreate method.
+17         In most cases you can leave this as-is, but you if you want to provide
+18         additional functionality it is fine to subclass or reimplement
+19         FlutterApplication and put your custom class here.
+20    -->
+21    <application
+21-->C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\android\app\src\main\AndroidManifest.xml:9:5-30:19
+22        android:name="io.flutter.app.FlutterApplication"
+22-->C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\android\app\src\main\AndroidManifest.xml:10:9-57
+23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+23-->[androidx.core:core:1.1.0] C:\Users\Naman Shah\.gradle\caches\transforms-2\files-2.1\a528b13ac93e64cafa3d0480e2c93207\core-1.1.0\AndroidManifest.xml:24:18-86
+24        android:icon="@mipmap/ic_launcher"
+24-->C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\android\app\src\main\AndroidManifest.xml:12:9-43
+25        android:label="Camera IPE" >
+25-->C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\android\app\src\main\AndroidManifest.xml:11:9-35
+26        <activity
+26-->C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\android\app\src\main\AndroidManifest.xml:13:9-24:20
+27            android:name="com.example.cat_dog_ml.MainActivity"
+27-->C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\android\app\src\main\AndroidManifest.xml:14:13-41
+28            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+28-->C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\android\app\src\main\AndroidManifest.xml:17:13-163
+29            android:hardwareAccelerated="true"
+29-->C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\android\app\src\main\AndroidManifest.xml:18:13-47
+30            android:launchMode="singleTop"
+30-->C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\android\app\src\main\AndroidManifest.xml:15:13-43
+31            android:theme="@style/LaunchTheme"
+31-->C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\android\app\src\main\AndroidManifest.xml:16:13-47
+32            android:windowSoftInputMode="adjustResize" >
+32-->C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\android\app\src\main\AndroidManifest.xml:19:13-55
+33            <intent-filter>
+33-->C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\android\app\src\main\AndroidManifest.xml:20:13-23:29
+34                <action android:name="android.intent.action.MAIN" />
+34-->C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\android\app\src\main\AndroidManifest.xml:21:17-68
+34-->C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\android\app\src\main\AndroidManifest.xml:21:25-66
+35
+36                <category android:name="android.intent.category.LAUNCHER" />
+36-->C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\android\app\src\main\AndroidManifest.xml:22:17-76
+36-->C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\android\app\src\main\AndroidManifest.xml:22:27-74
+37            </intent-filter>
+38        </activity>
+39        <!--
+40             Don't delete the meta-data below.
+41             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+42        -->
+43        <meta-data
+43-->C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\android\app\src\main\AndroidManifest.xml:27:9-29:33
+44            android:name="flutterEmbedding"
+44-->C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\android\app\src\main\AndroidManifest.xml:28:13-44
+45            android:value="2" />
+45-->C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\android\app\src\main\AndroidManifest.xml:29:13-30
+46
+47        <provider
+47-->[:image_picker] C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\build\image_picker\intermediates\library_manifest\release\AndroidManifest.xml:11:9-19:20
+48            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+48-->[:image_picker] C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\build\image_picker\intermediates\library_manifest\release\AndroidManifest.xml:12:13-82
+49            android:authorities="com.example.cat_dog_ml.flutter.image_provider"
+49-->[:image_picker] C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\build\image_picker\intermediates\library_manifest\release\AndroidManifest.xml:13:13-74
+50            android:exported="false"
+50-->[:image_picker] C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\build\image_picker\intermediates\library_manifest\release\AndroidManifest.xml:14:13-37
+51            android:grantUriPermissions="true" >
+51-->[:image_picker] C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\build\image_picker\intermediates\library_manifest\release\AndroidManifest.xml:15:13-47
+52            <meta-data
+52-->[:image_picker] C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\build\image_picker\intermediates\library_manifest\release\AndroidManifest.xml:16:13-18:75
+53                android:name="android.support.FILE_PROVIDER_PATHS"
+53-->[:image_picker] C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\build\image_picker\intermediates\library_manifest\release\AndroidManifest.xml:17:17-67
+54                android:resource="@xml/flutter_image_picker_file_paths" />
+54-->[:image_picker] C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\build\image_picker\intermediates\library_manifest\release\AndroidManifest.xml:18:17-72
+55        </provider>
+56
+57        <activity
+57-->[:url_launcher] C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\build\url_launcher\intermediates\library_manifest\release\AndroidManifest.xml:8:9-11:74
+58            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+58-->[:url_launcher] C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\build\url_launcher\intermediates\library_manifest\release\AndroidManifest.xml:9:13-74
+59            android:exported="false"
+59-->[:url_launcher] C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\build\url_launcher\intermediates\library_manifest\release\AndroidManifest.xml:10:13-37
+60            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+60-->[:url_launcher] C:\Users\Naman Shah\Documents\GitHub\Flutter_Image-Recognition1\build\url_launcher\intermediates\library_manifest\release\AndroidManifest.xml:11:13-71
+61    </application>
+62
+63</manifest>
