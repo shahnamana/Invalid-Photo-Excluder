@@ -1,16 +1,6 @@
-# cat_dog_ml
+#imageX
 
-A new Flutter project.
+Not just an ordinary camera. 
+This app is designed using Flutter and Tensorflow that detects any inappropriate obscene images clicked and notifies the user's guardian if done.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Built as a project for the GPCSSI-2020 under the guidance of Mr. Rakshit Tandon.

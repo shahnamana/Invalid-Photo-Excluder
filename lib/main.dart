@@ -38,9 +38,6 @@ class _MyAppState extends State<MyApp> {
       });
     });
   }
-
-  String message = "User tried to click inappropriate photo!";
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,19 +90,19 @@ class _MyAppState extends State<MyApp> {
           //     ),
           //   ),
           // ),
-          // new Padding(
-          //   padding: EdgeInsets.all(10),
-          //   child: Align(
-          //     alignment: Alignment.bottomRight,
-          //     child: FloatingActionButton(
-          //       heroTag: "btn1",
-          //       child: Icon(Icons.image),
-          //       tooltip: 'Pick Image from Gallery',
-          //       backgroundColor: Colors.purpleAccent,
-          //       onPressed: pickImage,
-          //     ),
-          //   ),
-          // ),
+           new Padding(
+             padding: EdgeInsets.all(10),
+             child: Align(
+               alignment: Alignment.bottomRight,
+               child: FloatingActionButton(
+                 heroTag: "btn1",
+                 child: Icon(Icons.image),
+                 tooltip: 'Pick Image from Gallery',
+                 backgroundColor: Colors.purpleAccent,
+                 onPressed: pickImage,
+               ),
+             ),
+           ),
           new Padding(
             padding: EdgeInsets.all(10),
             child: Align(
@@ -147,27 +144,26 @@ class _MyAppState extends State<MyApp> {
   classifyImage(File image) async {
     var output = await Tflite.runModelOnImage(
       path: image.path,
-      numResults: 5,
+      numResults: 2,
       threshold: 0.5,
       imageMean: 127.5,
       imageStd: 127.5,
     );
-    setState(() {
-      _loading = false;
-      _outputs = output;
-    });
-
     print(output);
     var t = output[0];
     String x = t['label'];
     print(x);
-    if (x == "0 Safe" || x == "2 Safe") {
+    setState(() {
+      _loading = false;
+      _outputs = x;
+    });
+
+    if (x == "1 Safe") {
       image = await FlutterExifRotation.rotateAndSaveImage(path: image.path);
     } else {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       String number1 = prefs.getString('username');
       String number2 = prefs.getString('password');
-      String phoneNumber = "+919029085127";
 
       print("\n\n\n\n\n");
       print(recipents);
@@ -179,7 +175,7 @@ class _MyAppState extends State<MyApp> {
       print(recipents);
       print(recipents.length);
       print("\n\n\n\n\n");
-      String message = "After clicking an in appropriate image";
+      String message = "I have clicked an inappropriate image. Please contact me.";
       String number1_toSend = recipents[0].toString();
       String number2_toSend = recipents[1].toString();
       await Sendsms.onSendSMS(number1_toSend.toString(), message);
@@ -194,7 +190,7 @@ class _MyAppState extends State<MyApp> {
 
   loadModel() async {
     await Tflite.loadModel(
-      model: "assets/converted_model.tflite",
+      model: "assets/model.tflite",
       labels: "assets/labels.txt",
     );
   }
@@ -338,7 +334,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
     );
   }
 }
-
+/*
 class MyDashboard extends StatefulWidget {
   @override
   _MyDashboardState createState() => _MyDashboardState();
@@ -394,3 +390,4 @@ class _MyDashboardState extends State<MyDashboard> {
     );
   }
 }
+*/
