@@ -1,4 +1,4 @@
-#Tue Jul 07 22:49:29 IST 2020
-base.0=C\:\\Users\\kumar\\Desktop\\Invalid-Photo-Excluder\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+#Wed Jul 08 12:52:17 IST 2020
+base.0=C\:\\Users\\Naman Shah\\Documents\\GitHub\\Invalid-Photo-Excluder\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

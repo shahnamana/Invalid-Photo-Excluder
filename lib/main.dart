@@ -5,7 +5,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tflite/tflite.dart';
 import 'package:flutter_exif_rotation/flutter_exif_rotation.dart';
-import 'package:easy_permission_validator/easy_permission_validator.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 void main() => runApp(MaterialApp(
@@ -38,6 +37,7 @@ class _MyAppState extends State<MyApp> {
       });
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +55,13 @@ class _MyAppState extends State<MyApp> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _image == null ? Container() : Image.file(_image),
+                  _image == null
+                      ? Container()
+                  : Container(
+                      child: Image.file(_image,
+                      height: MediaQuery.of(context).size.height /2,
+                      ),
+                    ),
                   SizedBox(
                     height: 20,
                   ),
@@ -90,19 +96,19 @@ class _MyAppState extends State<MyApp> {
           //     ),
           //   ),
           // ),
-           new Padding(
-             padding: EdgeInsets.all(10),
-             child: Align(
-               alignment: Alignment.bottomRight,
-               child: FloatingActionButton(
-                 heroTag: "btn1",
-                 child: Icon(Icons.image),
-                 tooltip: 'Pick Image from Gallery',
-                 backgroundColor: Colors.purpleAccent,
-                 onPressed: pickImage,
-               ),
-             ),
-           ),
+          new Padding(
+            padding: EdgeInsets.all(10),
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: FloatingActionButton(
+                heroTag: "btn1",
+                child: Icon(Icons.image),
+                tooltip: 'Pick Image from Gallery',
+                backgroundColor: Colors.purpleAccent,
+                onPressed: pickImage,
+              ),
+            ),
+          ),
           new Padding(
             padding: EdgeInsets.all(10),
             child: Align(
@@ -175,7 +181,8 @@ class _MyAppState extends State<MyApp> {
       print(recipents);
       print(recipents.length);
       print("\n\n\n\n\n");
-      String message = "I have clicked an inappropriate image. Please contact me.";
+      String message =
+          "I have clicked an inappropriate image. Please contact me.";
       String number1_toSend = recipents[0].toString();
       String number2_toSend = recipents[1].toString();
       await Sendsms.onSendSMS(number1_toSend.toString(), message);
