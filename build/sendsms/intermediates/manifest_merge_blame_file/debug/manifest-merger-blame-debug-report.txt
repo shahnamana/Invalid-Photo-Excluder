@@ -3,10 +3,10 @@
 3    package="com.emsoluciones.app.sendsms" >
 4
 5    <uses-sdk android:minSdkVersion="16" />
-5-->C:\flutter\flutter\.pub-cache\hosted\pub.dartlang.org\sendsms-1.0.3\android\src\main\AndroidManifest.xml
+5-->C:\flutter\.pub-cache\hosted\pub.dartlang.org\sendsms-1.0.3\android\src\main\AndroidManifest.xml
 6
 7    <uses-permission android:name="android.permission.SEND_SMS" />
-7-->C:\flutter\flutter\.pub-cache\hosted\pub.dartlang.org\sendsms-1.0.3\android\src\main\AndroidManifest.xml:3:5-66
-7-->C:\flutter\flutter\.pub-cache\hosted\pub.dartlang.org\sendsms-1.0.3\android\src\main\AndroidManifest.xml:3:22-64
+7-->C:\flutter\.pub-cache\hosted\pub.dartlang.org\sendsms-1.0.3\android\src\main\AndroidManifest.xml:3:5-66
+7-->C:\flutter\.pub-cache\hosted\pub.dartlang.org\sendsms-1.0.3\android\src\main\AndroidManifest.xml:3:22-64
 8
 9</manifest>

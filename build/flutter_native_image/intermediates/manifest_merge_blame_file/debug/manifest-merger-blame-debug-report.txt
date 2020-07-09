@@ -3,6 +3,6 @@
 3    package="com.example.flutternativeimage" >
 4
 5    <uses-sdk android:minSdkVersion="16" />
-5-->C:\flutter\flutter\.pub-cache\hosted\pub.dartlang.org\flutter_native_image-0.0.5+2\android\src\main\AndroidManifest.xml
+5-->C:\flutter\.pub-cache\hosted\pub.dartlang.org\flutter_native_image-0.0.5+2\android\src\main\AndroidManifest.xml
 6
 7</manifest>
