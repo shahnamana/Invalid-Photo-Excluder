@@ -44,6 +44,7 @@ class _MyAppState extends State<MyApp> {
       // appBar: AppBar(
       //   title: const Text('Invalid Photo Excluder'),
       // ),
+      backgroundColor: Colors.black,
       body: _loading
           ? Container(
               alignment: Alignment.center,
@@ -168,9 +169,9 @@ class _MyAppState extends State<MyApp> {
       image = await FlutterExifRotation.rotateAndSaveImage(path: image.path);
     } else {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
-      String number1 = prefs.getString('username');
-      String number2 = prefs.getString('password');
-
+      String number1 = prefs.getString('number1');
+      String number2 = prefs.getString('number2');
+      String user= prefs.getString('username');
       print("\n\n\n\n\n");
       print(recipents);
       print(recipents.length);
@@ -181,8 +182,7 @@ class _MyAppState extends State<MyApp> {
       print(recipents);
       print(recipents.length);
       print("\n\n\n\n\n");
-      String message =
-          "I have clicked an inappropriate image. Please contact me.";
+      String message = user+ " has clicked an inappropriate image. Please contact them asap.";
       String number1_toSend = recipents[0].toString();
       String number2_toSend = recipents[1].toString();
       await Sendsms.onSendSMS(number1_toSend.toString(), message);
@@ -218,9 +218,10 @@ class _MyLoginPageState extends State<MyLoginPage> {
   // Create a text controller and use it to retrieve the current value
   // of the TextField.
   final username_controller = TextEditingController();
-  final password_controller = TextEditingController();
-
+  final number1_controller = TextEditingController();
+  final number2_controller = TextEditingController();
   bool newuser;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -238,22 +239,12 @@ class _MyLoginPageState extends State<MyLoginPage> {
     }
   }
 
-  // _permissionRequest() async {
-  //   final permissionValidator = EasyPermissionValidator(
-  //     context: context,
-  //     appName: 'Easy Permission Validator',
-  //   );
-  //   var result = await permissionValidator.camera();
-  //   if (result) {
-  //     setState(() => _result = 'Permission accepted');
-  //   }
-  // }
-
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
     username_controller.dispose();
-    password_controller.dispose();
+    number1_controller.dispose();
+    number2_controller.dispose();
     super.dispose();
   }
 
@@ -264,6 +255,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
       // appBar: AppBar(
       //   title: Text(" Shared Preferences"),
       // ),
+      backgroundColor: Colors.black,
       resizeToAvoidBottomInset: false,
       body: Center(
         child: Column(
@@ -272,58 +264,56 @@ class _MyLoginPageState extends State<MyLoginPage> {
             Container(
               height: MediaQuery.of(context).copyWith().size.height / 5,
             ),
-
-            Image.asset('assets/images/logo.jpg'),
-            // Text(
-            //   "To show Example of Shared Preferences",
-            //   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            // ),
-            // Container(
-            //   height: width * 0.35,
-            // ),
+            //Image.asset('assets/images/logo.png'),
             Text(
               "Please fill this form",
               style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
             ),
-            // Container(
-            //   height: ScreenUtil().setWidth(375),
-            // ),
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextField(
                 controller: username_controller,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Number 1',
+                  labelText: 'Username',
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextField(
-                controller: password_controller,
+                controller: number1_controller,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Number 2',
+                  labelText: 'Parent Number 1',
                 ),
               ),
             ),
-            // Container(
-            //   height: width * 0.35,
-            // ),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: TextField(
+                controller: number2_controller,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Parent Number 2',
+                ),
+              ),
+            ),
             RaisedButton(
               textColor: Colors.white,
               color: Colors.blue,
               onPressed: () async {
-                String username = username_controller.text;
-                String password = password_controller.text;
-                if (username != '' && password != '') {
+                String username= username_controller.text;
+                String number1 = number1_controller.text;
+                String number2 = number2_controller.text;
+                if (number1 != '' && number2 != '') {
                   if (await Permission.sms.request().isGranted) {
                     // Either the permission was already granted before or the user just granted it.
                     print('Successfull');
                     logindata.setBool('login', false);
                     logindata.setString('username', username);
-                    logindata.setString('password', password);
+                    logindata.setString('number1', number1);
+                    logindata.setString('number2', number2);
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => MyApp()));
                   }
@@ -331,70 +321,10 @@ class _MyLoginPageState extends State<MyLoginPage> {
               },
               child: Text("Log-In"),
             ),
-            // Container(
-            //   height: width * 0.35,
-            // ),
-            Image.asset('assets/images/footer.jpg'),
+            //Image.asset('assets/images/footer.jpg'),
           ],
         ),
       ),
     );
   }
 }
-/*
-class MyDashboard extends StatefulWidget {
-  @override
-  _MyDashboardState createState() => _MyDashboardState();
-}
-
-class _MyDashboardState extends State<MyDashboard> {
-  SharedPreferences logindata;
-  String username;
-  String password;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    initial();
-  }
-
-  void initial() async {
-    logindata = await SharedPreferences.getInstance();
-    setState(() {
-      username = logindata.getString('username');
-      password = logindata.getString('password');
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Shared Preference Example"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(26.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Center(
-              child: Text(
-                'WELCOME TO PROTO CODERS POINT  $username',
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-              ),
-            ),
-            RaisedButton(
-              onPressed: () {
-                logindata.setBool('login', true);
-                Navigator.pushReplacement(context,
-                    new MaterialPageRoute(builder: (context) => MyLoginPage()));
-              },
-              child: Text('LogOut'),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-*/
