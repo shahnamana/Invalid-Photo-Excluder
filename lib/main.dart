@@ -58,11 +58,12 @@ class _MyAppState extends State<MyApp> {
                 children: [
                   _image == null
                       ? Container()
-                  : Container(
-                      child: Image.file(_image,
-                      height: MediaQuery.of(context).size.height /2,
-                      ),
-                    ),
+                      : Container(
+                          child: Image.file(
+                            _image,
+                            height: MediaQuery.of(context).size.height / 2,
+                          ),
+                        ),
                   SizedBox(
                     height: 20,
                   ),
@@ -171,7 +172,7 @@ class _MyAppState extends State<MyApp> {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       String number1 = prefs.getString('number1');
       String number2 = prefs.getString('number2');
-      String user= prefs.getString('username');
+      String user = prefs.getString('username');
       print("\n\n\n\n\n");
       print(recipents);
       print(recipents.length);
@@ -182,7 +183,8 @@ class _MyAppState extends State<MyApp> {
       print(recipents);
       print(recipents.length);
       print("\n\n\n\n\n");
-      String message = user+ " has clicked an inappropriate image. Please contact them asap.";
+      String message = user +
+          " has clicked an inappropriate image. Please contact them asap.";
       String number1_toSend = recipents[0].toString();
       String number2_toSend = recipents[1].toString();
       await Sendsms.onSendSMS(number1_toSend.toString(), message);
@@ -262,13 +264,18 @@ class _MyLoginPageState extends State<MyLoginPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
-              height: MediaQuery.of(context).copyWith().size.height / 5,
+              height: MediaQuery.of(context).copyWith().size.height / 15,
             ),
-            //Image.asset('assets/images/logo.png'),
-            Text(
-              "Please fill this form",
-              style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+            Container(child: Image.asset(
+              'assets/images/logo_2.jpg',
+              // width: MediaQuery.of(context).size.width,
+              // height: 400,
             ),
+            height: 200,),
+            // Text(
+            //   "Please fill this form",
+            //   style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+            // ),
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextField(
@@ -303,7 +310,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
               textColor: Colors.white,
               color: Colors.blue,
               onPressed: () async {
-                String username= username_controller.text;
+                String username = username_controller.text;
                 String number1 = number1_controller.text;
                 String number2 = number2_controller.text;
                 if (number1 != '' && number2 != '') {

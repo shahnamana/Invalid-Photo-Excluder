@@ -1,11 +1,11 @@
 # This is a generated file; do not edit or check into version control.
-flutter_exif_rotation=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\flutter_exif_rotation-0.2.7\\
-flutter_native_image=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\flutter_native_image-0.0.5+2\\
-flutter_plugin_android_lifecycle=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\flutter_plugin_android_lifecycle-1.0.7\\
-image_picker=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\image_picker-0.6.5+3\\
-permission_handler=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\permission_handler-5.0.1+1\\
-sendsms=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\sendsms-1.0.3\\
-shared_preferences=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences-0.5.7+3\\
-shared_preferences_macos=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences_macos-0.0.1+10\\
-shared_preferences_web=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences_web-0.1.2+7\\
-tflite=C:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\tflite-1.0.5\\
+flutter_exif_rotation=C:\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\flutter_exif_rotation-0.2.7\\
+flutter_native_image=C:\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\flutter_native_image-0.0.5+2\\
+flutter_plugin_android_lifecycle=C:\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\flutter_plugin_android_lifecycle-1.0.7\\
+image_picker=C:\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\image_picker-0.6.5+3\\
+permission_handler=C:\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\permission_handler-5.0.1+1\\
+sendsms=C:\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\sendsms-1.0.3\\
+shared_preferences=C:\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences-0.5.7+3\\
+shared_preferences_macos=C:\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences_macos-0.0.1+10\\
+shared_preferences_web=C:\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences_web-0.1.2+7\\
+tflite=C:\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\tflite-1.0.5\\

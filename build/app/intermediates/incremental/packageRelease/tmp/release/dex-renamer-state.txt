@@ -1,4 +1,0 @@
-#Mon Jul 06 14:05:26 IST 2020
-base.0=C\:\\Users\\Naman Shah\\Documents\\GitHub\\Flutter_Image-Recognition1\\build\\app\\intermediates\\transforms\\r8\\release\\0\\classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
