@@ -1,2 +1,2 @@
-0 Unsafe
-1 Safe
+0 Safe
+1 Unsafe
