@@ -8,10 +8,10 @@ import 'package:flutter_exif_rotation/flutter_exif_rotation.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 void main() => runApp(MaterialApp(
-      home: MyLoginPage(),
-      theme: ThemeData.dark(),
-      debugShowCheckedModeBanner: false,
-    ));
+  home: MyLoginPage(),
+  theme: ThemeData.dark(),
+  debugShowCheckedModeBanner: false,
+));
 
 List<String> recipents = [];
 SharedPreferences logindata;
@@ -47,39 +47,38 @@ class _MyAppState extends State<MyApp> {
       backgroundColor: Colors.black,
       body: _loading
           ? Container(
-              alignment: Alignment.center,
-              child: CircularProgressIndicator(),
-            )
+        alignment: Alignment.center,
+        child: CircularProgressIndicator(),
+      )
           : Container(
-              width: MediaQuery.of(context).size.width,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _image == null
-                      ? Container()
-                      : Container(
-                          child: Image.file(
-                            _image,
-                            height: MediaQuery.of(context).size.height / 2,
-                          ),
-                        ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  _outputs != null
-                      ? Text(
-                          "$_outputs",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20.0,
-                            background: Paint()..color = Colors.white,
-                          ),
-                        )
-                      : Container()
-                ],
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _image == null
+                ? Container()
+                : Container(
+              child: Image.file(_image,
+                height: MediaQuery.of(context).size.height /2,
               ),
             ),
+            SizedBox(
+              height: 20,
+            ),
+            _outputs != null
+                ? Text(
+              "$_outputs",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20.0,
+                background: Paint()..color = Colors.white,
+              ),
+            )
+                : Container()
+          ],
+        ),
+      ),
       floatingActionButton: Stack(
         children: <Widget>[
           // new Padding(
@@ -166,13 +165,13 @@ class _MyAppState extends State<MyApp> {
       _outputs = x;
     });
 
-    if (x == "1 Safe") {
+    if (x == "0 Safe") {
       image = await FlutterExifRotation.rotateAndSaveImage(path: image.path);
     } else {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       String number1 = prefs.getString('number1');
       String number2 = prefs.getString('number2');
-      String user = prefs.getString('username');
+      String user= prefs.getString('username');
       print("\n\n\n\n\n");
       print(recipents);
       print(recipents.length);
@@ -183,8 +182,7 @@ class _MyAppState extends State<MyApp> {
       print(recipents);
       print(recipents.length);
       print("\n\n\n\n\n");
-      String message = user +
-          " has clicked an inappropriate image. Please contact them asap.";
+      String message = user+ " has clicked an inappropriate image. Please contact them asap.";
       String number1_toSend = recipents[0].toString();
       String number2_toSend = recipents[1].toString();
       await Sendsms.onSendSMS(number1_toSend.toString(), message);
@@ -252,7 +250,6 @@ class _MyLoginPageState extends State<MyLoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       // appBar: AppBar(
       //   title: Text(" Shared Preferences"),
@@ -264,18 +261,13 @@ class _MyLoginPageState extends State<MyLoginPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
-              height: MediaQuery.of(context).copyWith().size.height / 15,
+              height: MediaQuery.of(context).copyWith().size.height / 5,
             ),
-            Container(child: Image.asset(
-              'assets/images/logo_2.jpg',
-              // width: MediaQuery.of(context).size.width,
-              // height: 400,
+            Image.asset('assets/images/logo.png'),
+            Text(
+              "                       ",
+              style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
             ),
-            height: 200,),
-            // Text(
-            //   "Please fill this form",
-            //   style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
-            // ),
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextField(
@@ -310,7 +302,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
               textColor: Colors.white,
               color: Colors.blue,
               onPressed: () async {
-                String username = username_controller.text;
+                String username= username_controller.text;
                 String number1 = number1_controller.text;
                 String number2 = number2_controller.text;
                 if (number1 != '' && number2 != '') {
@@ -328,7 +320,6 @@ class _MyLoginPageState extends State<MyLoginPage> {
               },
               child: Text("Log-In"),
             ),
-            //Image.asset('assets/images/footer.jpg'),
           ],
         ),
       ),
