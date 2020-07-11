@@ -266,16 +266,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
             Container(
               height: MediaQuery.of(context).copyWith().size.height / 15,
             ),
-            Container(child: Image.asset(
-              'assets/images/logo_2.jpg',
-              // width: MediaQuery.of(context).size.width,
-              // height: 400,
-            ),
-            height: 200,),
-            // Text(
-            //   "Please fill this form",
-            //   style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
-            // ),
+            Image.asset('assets/images/logo_2.jpg'),
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextField(
