@@ -25,7 +25,7 @@ class _MyAppState extends State<MyApp> {
   var _outputs;
   File _image;
   bool _loading = false;
-
+  bool saved = false;
   @override
   void initState() {
     super.initState();
@@ -130,6 +130,7 @@ class _MyAppState extends State<MyApp> {
 
   clickImage() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    saved = false;
     if (image == null) return null;
     setState(() {
       _loading = true;
@@ -140,6 +141,7 @@ class _MyAppState extends State<MyApp> {
 
   pickImage() async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    saved = true;
     if (image == null) return null;
     setState(() {
       _loading = true;
@@ -165,23 +167,17 @@ class _MyAppState extends State<MyApp> {
       _outputs = x;
     });
 
-    if (x == "0 Safe") {
+    if (x == "Safe" && saved == false)
+    {
       image = await FlutterExifRotation.rotateAndSaveImage(path: image.path);
-    } else {
+    }
+    else {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       String number1 = prefs.getString('number1');
       String number2 = prefs.getString('number2');
       String user= prefs.getString('username');
-      print("\n\n\n\n\n");
-      print(recipents);
-      print(recipents.length);
-      print("\n\n\n\n\n");
       recipents.add(number1);
       recipents.add(number2);
-      print("\n\n\n\n\n");
-      print(recipents);
-      print(recipents.length);
-      print("\n\n\n\n\n");
       String message = user+ " has clicked an inappropriate image. Please contact them asap.";
       String number1_toSend = recipents[0].toString();
       String number2_toSend = recipents[1].toString();
@@ -305,7 +301,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                 String username= username_controller.text;
                 String number1 = number1_controller.text;
                 String number2 = number2_controller.text;
-                if (number1 != '' && number2 != '') {
+                if ((number1 != '' && number2 != '')&&(number1.length==10 || number1.length==11)&&(number2.length==10 || number2.length==11)) {
                   if (await Permission.sms.request().isGranted) {
                     // Either the permission was already granted before or the user just granted it.
                     print('Successfull');
